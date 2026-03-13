@@ -195,6 +195,108 @@
         .check { color: rgba(255, 255, 255, 0.70); }
         .cross  { color: rgba(255, 255, 255, 0.25); }
 
+        /* ─── Card subsection label ─── */
+        .card-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.10em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.30);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ─── Info geral grid ─── */
+        .info-glass {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.10);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        /* ─── Mobile fixes ─── */
+        @media (max-width: 767px) {
+            /* Overlay mais escuro no mobile — backdrop-filter do vídeo fixo
+               não funciona bem em Safari iOS com position:fixed */
+            .packages-overlay {
+                background: rgba(10, 9, 7, 0.82) !important;
+            }
+
+            /* Cards: fundo sólido suficiente sem depender de backdrop-filter */
+            .glass-card {
+                background: rgba(30, 27, 22, 0.88);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                border-color: rgba(255,255,255,0.12);
+            }
+            .glass-card:hover {
+                background: rgba(40, 36, 30, 0.92);
+                transform: none; /* sem lift no touch */
+            }
+            .glass-card-featured {
+                background: rgba(38, 34, 27, 0.92);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+            .glass-card-featured:hover {
+                background: rgba(48, 43, 35, 0.95);
+                transform: none;
+            }
+
+            /* Badge "mais escolhido" — não sai do card no mobile */
+            .glass-card-featured .absolute.-top-4 {
+                top: -0.75rem;
+            }
+
+            /* Padding do grid container para dar espaço ao badge */
+            #sessoes .grid {
+                padding-top: 1rem;
+            }
+
+            /* Info glass no mobile */
+            .info-glass {
+                background: rgba(28, 25, 20, 0.90);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            /* Info strip no mobile */
+            .info-strip {
+                background: rgba(22, 20, 16, 0.85);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            /* Footer glass no mobile */
+            .footer-glass {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                background: rgba(10, 9, 7, 0.95);
+            }
+
+            /* Seção hero: overlay mais escuro para legibilidade */
+            .hero-overlay {
+                background: linear-gradient(
+                    to bottom,
+                    rgba(10, 9, 7, 0.55) 0%,
+                    rgba(10, 9, 7, 0.45) 40%,
+                    rgba(10, 9, 7, 0.60) 100%
+                ) !important;
+            }
+
+            /* Navbar glass no mobile */
+            nav.scrolled {
+                background: rgba(10, 9, 7, 0.90);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            /* Glass pill no mobile */
+            .glass-pill {
+                background: rgba(30, 27, 22, 0.80);
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+        }
+
         /* ─── Scroll caret ─── */
         .caret { animation: caret-bounce 2.8s ease-in-out infinite; }
         @keyframes caret-bounce {
@@ -287,37 +389,79 @@
         <div class="relative max-w-7xl mx-auto" style="z-index:2">
 
             <div class="text-center mb-5">
-                <h2 class="serif text-4xl sm:text-5xl md:text-6xl font-light text-white mb-4">
+                <h2 class="serif text-4xl sm:text-5xl md:text-6xl font-light text-white mb-6">
                     Escolha sua sessão
                 </h2>
-                <p class="text-dim-50 text-sm font-light max-w-md mx-auto leading-relaxed tracking-wide">
-                    Curadoria, edição leve e álbum digital inclusos.<br>
-                    50% na reserva · 50% na entrega.
+                <p class="text-dim-60 text-sm sm:text-base font-light max-w-lg mx-auto leading-relaxed tracking-wide mb-4">
+                    Sessões pensadas para marcas que precisam de conteúdo com estética, consistência e agilidade.
                 </p>
+                <p class="text-dim-40 text-xs font-light max-w-md mx-auto leading-relaxed tracking-wide mb-5">
+                    Todas as opções incluem direção da sessão, curadoria do material, edição leve, entrega digital em Drive compartilhado e uso comercial digital pela marca contratante.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-xs text-dim-40 font-light tracking-wide">
+                    <span>50% na reserva · 50% na entrega</span>
+                    <span class="hidden sm:block text-dim-25">·</span>
+                    <span>Prazo: 3 a 4 dias úteis</span>
+                </div>
             </div>
 
             <div class="divider max-w-xs mx-auto mb-16"></div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-6 md:pt-0">
 
                 <!-- 3 horas -->
                 <div class="glass-card rounded-3xl p-6 sm:p-8 flex flex-col">
                     <p class="text-dim-40 text-xs uppercase tracking-widest mb-3">3 horas</p>
-                    <h3 class="serif text-3xl font-light italic text-white mb-5">Essencial</h3>
+                    <h3 class="serif text-3xl font-light italic text-white mb-4">Essencial</h3>
                     <div class="flex items-baseline gap-1 mb-1">
                         <span class="text-dim-40 text-sm">R$</span>
                         <span class="text-4xl sm:text-5xl font-light text-white">960</span>
                     </div>
-                    <p class="text-dim-30 text-xs mb-6">40–55 fotos · Prazo: 3–4 dias úteis</p>
-                    <div class="divider mb-6"></div>
-                    <ul class="space-y-3 flex-1 mb-8 text-sm">
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Sessão no seu local de trabalho</li>
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Equipamento profissional</li>
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Iluminação portátil inclusa</li>
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Fotos + vídeos para Reels/Stories</li>
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Edição de foto e vídeo</li>
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Álbum digital em Drive compartilhado</li>
-                    </ul>
+                    <p class="text-dim-50 text-xs font-light leading-relaxed mt-3 mb-5 italic">
+                        Ideal para captação objetiva no seu local de trabalho, com foco em presença digital, bastidores, rotina e conteúdo para a semana.
+                    </p>
+                    <div class="divider mb-5"></div>
+
+                    <!-- Entrega -->
+                    <div class="mb-4">
+                        <p class="card-label">Entrega</p>
+                        <ul class="space-y-2 text-xs text-dim-70 font-light">
+                            <li class="flex gap-2"><span class="check">&#10003;</span> 20 a 25 fotos editadas</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> 2 vídeos curtos em formato vertical</li>
+                        </ul>
+                    </div>
+
+                    <!-- Cobertura -->
+                    <div class="mb-4">
+                        <p class="card-label">Cobertura</p>
+                        <ul class="space-y-2 text-xs text-dim-60 font-light">
+                            <li class="flex gap-2"><span class="check">&#10003;</span> 1 ambiente principal</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Até 2 pessoas em cena</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Até 1 troca de look</li>
+                        </ul>
+                    </div>
+
+                    <!-- Incluso -->
+                    <div class="mb-4">
+                        <p class="card-label">Incluso</p>
+                        <ul class="space-y-2 text-xs text-dim-60 font-light">
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Equipamento profissional</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Iluminação portátil</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Direção de captação</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Edição de foto e vídeo</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Álbum digital em Drive compartilhado</li>
+                        </ul>
+                    </div>
+
+                    <!-- Formato -->
+                    <div class="flex-1 mb-6">
+                        <p class="card-label">Vídeos</p>
+                        <ul class="space-y-2 text-xs text-dim-50 font-light">
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Vertical 9:16 · Reels e Stories</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Até 15 segundos por vídeo</li>
+                        </ul>
+                    </div>
+
                     <a href="https://wa.me/5531999999999?text=Ol%C3%A1%2C%20P%C3%A9rsia!%20Gostaria%20de%20reservar%20o%20plano%20Essencial."
                        class="btn-card w-full py-3.5 rounded-2xl text-sm text-center block">
                         Reservar sessão
@@ -332,22 +476,57 @@
                         </span>
                     </div>
                     <p class="text-dim-50 text-xs uppercase tracking-widest mb-3 pt-1">5 horas</p>
-                    <h3 class="serif text-3xl font-light italic text-white mb-5">Completo</h3>
+                    <h3 class="serif text-3xl font-light italic text-white mb-4">Completo</h3>
                     <div class="flex items-baseline gap-1 mb-1">
                         <span class="text-dim-50 text-sm">R$</span>
                         <span class="text-4xl sm:text-5xl font-light text-white">1.400</span>
                     </div>
-                    <p class="text-dim-40 text-xs mb-6">70–90 fotos · Prazo: 3–4 dias úteis</p>
-                    <div class="divider mb-6"></div>
-                    <ul class="space-y-3 flex-1 mb-8 text-sm">
-                        <li class="flex gap-3" style="color:rgba(255,255,255,0.80)"><span class="check">&#10003;</span> Sessão no seu local de trabalho</li>
-                        <li class="flex gap-3" style="color:rgba(255,255,255,0.80)"><span class="check">&#10003;</span> Equipamento profissional</li>
-                        <li class="flex gap-3" style="color:rgba(255,255,255,0.80)"><span class="check">&#10003;</span> Iluminação portátil inclusa</li>
-                        <li class="flex gap-3" style="color:rgba(255,255,255,0.80)"><span class="check">&#10003;</span> Fotos + vídeos para Reels/Stories</li>
-                        <li class="flex gap-3" style="color:rgba(255,255,255,0.80)"><span class="check">&#10003;</span> Edição de foto e vídeo</li>
-                        <li class="flex gap-3" style="color:rgba(255,255,255,0.80)"><span class="check">&#10003;</span> Cobertura ampla — múltiplos momentos</li>
-                        <li class="flex gap-3" style="color:rgba(255,255,255,0.80)"><span class="check">&#10003;</span> Álbum digital em Drive compartilhado</li>
-                    </ul>
+                    <p style="color:rgba(255,255,255,0.55)" class="text-xs font-light leading-relaxed mt-3 mb-5 italic">
+                        Ideal para marcas que precisam de mais variedade de conteúdo, mais momentos da rotina e melhor aproveitamento do dia.
+                    </p>
+                    <div class="divider mb-5"></div>
+
+                    <!-- Entrega -->
+                    <div class="mb-4">
+                        <p class="card-label">Entrega</p>
+                        <ul class="space-y-2 text-xs font-light" style="color:rgba(255,255,255,0.75)">
+                            <li class="flex gap-2"><span class="check">&#10003;</span> 35 a 40 fotos editadas</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> 3 a 4 vídeos curtos em formato vertical</li>
+                        </ul>
+                    </div>
+
+                    <!-- Cobertura -->
+                    <div class="mb-4">
+                        <p class="card-label">Cobertura</p>
+                        <ul class="space-y-2 text-xs font-light" style="color:rgba(255,255,255,0.70)">
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Até 2 ambientes no mesmo local</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Até 4 pessoas em cena</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Até 2 trocas de look</li>
+                        </ul>
+                    </div>
+
+                    <!-- Incluso -->
+                    <div class="mb-4">
+                        <p class="card-label">Incluso</p>
+                        <ul class="space-y-2 text-xs font-light" style="color:rgba(255,255,255,0.70)">
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Equipamento profissional</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Iluminação portátil</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Direção de captação</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Edição de foto e vídeo</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Cobertura ampla de processos e bastidores</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Álbum digital em Drive compartilhado</li>
+                        </ul>
+                    </div>
+
+                    <!-- Formato -->
+                    <div class="flex-1 mb-6">
+                        <p class="card-label">Vídeos</p>
+                        <ul class="space-y-2 text-xs font-light" style="color:rgba(255,255,255,0.60)">
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Vertical 9:16 · Reels e Stories</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Até 30 segundos por vídeo</li>
+                        </ul>
+                    </div>
+
                     <a href="https://wa.me/5531999999999?text=Ol%C3%A1%2C%20P%C3%A9rsia!%20Gostaria%20de%20reservar%20o%20plano%20Completo."
                        class="btn-card-featured w-full py-3.5 rounded-2xl text-sm font-medium text-center block">
                         Reservar sessão
@@ -357,23 +536,59 @@
                 <!-- 8 horas -->
                 <div class="glass-card rounded-3xl p-6 sm:p-8 flex flex-col">
                     <p class="text-dim-40 text-xs uppercase tracking-widest mb-3">8 horas</p>
-                    <h3 class="serif text-3xl font-light italic text-white mb-5">Imersão</h3>
+                    <h3 class="serif text-3xl font-light italic text-white mb-4">Imersão</h3>
                     <div class="flex items-baseline gap-1 mb-1">
                         <span class="text-dim-40 text-sm">R$</span>
                         <span class="text-4xl sm:text-5xl font-light text-white">1.860</span>
                     </div>
-                    <p class="text-dim-30 text-xs mb-6">120–150 fotos · Prazo: 3–4 dias úteis</p>
-                    <div class="divider mb-6"></div>
-                    <ul class="space-y-3 flex-1 mb-8 text-sm">
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Sessão no seu local de trabalho</li>
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Equipamento profissional</li>
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Iluminação portátil inclusa</li>
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Fotos + vídeos para Reels/Stories</li>
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Edição de foto e vídeo</li>
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Cobertura completa do dia</li>
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Ambientação do espaço inclusa</li>
-                        <li class="flex gap-3 text-dim-70"><span class="check">&#10003;</span> Álbum digital em Drive compartilhado</li>
-                    </ul>
+                    <p class="text-dim-50 text-xs font-light leading-relaxed mt-3 mb-5 italic">
+                        Ideal para cobertura completa do dia, com mais profundidade visual, mais variedade de cenas e construção de banco de conteúdo robusto.
+                    </p>
+                    <div class="divider mb-5"></div>
+
+                    <!-- Entrega -->
+                    <div class="mb-4">
+                        <p class="card-label">Entrega</p>
+                        <ul class="space-y-2 text-xs text-dim-70 font-light">
+                            <li class="flex gap-2"><span class="check">&#10003;</span> 60 a 70 fotos editadas</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> 5 vídeos curtos em formato vertical</li>
+                        </ul>
+                    </div>
+
+                    <!-- Cobertura -->
+                    <div class="mb-4">
+                        <p class="card-label">Cobertura</p>
+                        <ul class="space-y-2 text-xs text-dim-60 font-light">
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Até 4 ambientes no mesmo local</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Até 6 pessoas em cena</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Até 3 trocas de look</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Cobertura completa do dia</li>
+                        </ul>
+                    </div>
+
+                    <!-- Incluso -->
+                    <div class="mb-4">
+                        <p class="card-label">Incluso</p>
+                        <ul class="space-y-2 text-xs text-dim-60 font-light">
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Equipamento profissional</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Iluminação portátil</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Direção de captação</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Edição de foto e vídeo</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Ambientação básica do espaço</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Álbum digital em Drive compartilhado</li>
+                        </ul>
+                    </div>
+
+                    <!-- Formato -->
+                    <div class="flex-1 mb-6">
+                        <p class="card-label">Vídeos</p>
+                        <ul class="space-y-2 text-xs text-dim-50 font-light">
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Vertical 9:16 · Reels e Stories</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Vídeos curtos de até 30 segundos</li>
+                            <li class="flex gap-2"><span class="check">&#10003;</span> Vídeo-resumo de até 45 segundos</li>
+                        </ul>
+                    </div>
+
                     <a href="https://wa.me/5531999999999?text=Ol%C3%A1%2C%20P%C3%A9rsia!%20Gostaria%20de%20reservar%20o%20plano%20Imers%C3%A3o."
                        class="btn-card w-full py-3.5 rounded-2xl text-sm text-center block">
                         Reservar sessão
@@ -392,6 +607,123 @@
 
         </div>
     </section>
+
+
+    <!-- ─── INFORMAÇÕES GERAIS ─── -->
+    <section class="relative py-16 sm:py-28 px-4 sm:px-6" id="informacoes">
+        <div class="packages-overlay absolute inset-0 pointer-events-none"></div>
+
+        <div class="relative max-w-5xl mx-auto" style="z-index:2">
+
+            <div class="text-center mb-5">
+                <h2 class="serif text-3xl sm:text-4xl md:text-5xl font-light text-white mb-4">
+                    Informações gerais
+                </h2>
+                <p class="text-dim-40 text-xs font-light tracking-wide">
+                    Tudo o que você precisa saber antes de reservar.
+                </p>
+            </div>
+
+            <div class="divider max-w-xs mx-auto mb-14"></div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+                <!-- Edição leve -->
+                <div class="info-glass rounded-2xl p-7">
+                    <p class="text-dim-30 text-xs uppercase tracking-widest mb-3">O que significa</p>
+                    <h4 class="serif text-xl font-light text-white mb-4">Edição leve</h4>
+                    <p class="text-dim-50 text-xs font-light leading-relaxed mb-4">
+                        Todas as fotos e vídeos finais passam por ajuste de:
+                    </p>
+                    <ul class="space-y-1.5 text-xs text-dim-60 font-light mb-4">
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Luz e cor</li>
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Contraste e nitidez</li>
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Enquadramento</li>
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Padronização visual</li>
+                    </ul>
+                    <p class="text-dim-30 text-xs font-light leading-relaxed italic">
+                        Não inclui manipulação avançada, troca de fundo, remoção complexa de objetos, montagem, tratamento de pele detalhado ou edição publicitária avançada.
+                    </p>
+                </div>
+
+                <!-- Entrega -->
+                <div class="info-glass rounded-2xl p-7">
+                    <p class="text-dim-30 text-xs uppercase tracking-widest mb-3">Entrega</p>
+                    <h4 class="serif text-xl font-light text-white mb-4">Como recebo o material</h4>
+                    <ul class="space-y-2.5 text-xs text-dim-60 font-light">
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Prazo: 3 a 4 dias úteis após a sessão</li>
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Material enviado por Drive compartilhado</li>
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Link disponível por 60 dias</li>
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Alta resolução + versão otimizada para redes</li>
+                    </ul>
+                </div>
+
+                <!-- Pagamento -->
+                <div class="info-glass rounded-2xl p-7">
+                    <p class="text-dim-30 text-xs uppercase tracking-widest mb-3">Pagamento</p>
+                    <h4 class="serif text-xl font-light text-white mb-4">Formas e condições</h4>
+                    <ul class="space-y-2.5 text-xs text-dim-60 font-light mb-4">
+                        <li class="flex gap-2"><span class="check">&#10003;</span> 50% no ato da reserva</li>
+                        <li class="flex gap-2"><span class="check">&#10003;</span> 50% na entrega</li>
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Pix, transferência ou cartão</li>
+                    </ul>
+                    <p class="text-dim-30 text-xs font-light italic">Parcelamento no cartão sujeito às taxas da operadora.</p>
+                </div>
+
+                <!-- Remarcação -->
+                <div class="info-glass rounded-2xl p-7">
+                    <p class="text-dim-30 text-xs uppercase tracking-widest mb-3">Agenda</p>
+                    <h4 class="serif text-xl font-light text-white mb-4">Remarcação e cancelamento</h4>
+                    <ul class="space-y-2.5 text-xs text-dim-60 font-light mb-4">
+                        <li class="flex gap-2"><span class="check">&#10003;</span> 1 remarcação sem custo (aviso mínimo 72h)</li>
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Sujeita à disponibilidade de agenda</li>
+                    </ul>
+                    <p class="text-dim-30 text-xs font-light italic">Em caso de cancelamento, o valor da reserva não é reembolsável.</p>
+                </div>
+
+                <!-- Deslocamento -->
+                <div class="info-glass rounded-2xl p-7">
+                    <p class="text-dim-30 text-xs uppercase tracking-widest mb-3">Deslocamento</p>
+                    <h4 class="serif text-xl font-light text-white mb-4">Onde atendo</h4>
+                    <ul class="space-y-2.5 text-xs text-dim-60 font-light mb-4">
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Atendimento no local do cliente</li>
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Deslocamento na cidade-base incluso</li>
+                    </ul>
+                    <p class="text-dim-30 text-xs font-light italic">Para outras cidades ou regiões: taxa adicional conforme distância, pedágio e estacionamento.</p>
+                </div>
+
+                <!-- Hora extra + Uso -->
+                <div class="info-glass rounded-2xl p-7">
+                    <p class="text-dim-30 text-xs uppercase tracking-widest mb-3">Extras</p>
+                    <h4 class="serif text-xl font-light text-white mb-4">Hora extra e uso das imagens</h4>
+                    <p class="text-dim-40 text-xs font-light mb-2">Hora extra: <span class="text-dim-60">R$ 280 por hora adicional.</span></p>
+                    <p class="text-dim-30 text-xs font-light italic mb-5">Para sessões com ambientação mais complexa: valor sob consulta.</p>
+                    <div class="divider mb-4"></div>
+                    <p class="text-dim-40 text-xs font-light mb-3">O valor inclui uso comercial digital:</p>
+                    <ul class="space-y-1.5 text-xs text-dim-60 font-light mb-3">
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Redes sociais, site e anúncios</li>
+                        <li class="flex gap-2"><span class="check">&#10003;</span> Materiais institucionais digitais</li>
+                    </ul>
+                    <p class="text-dim-30 text-xs font-light italic">Não inclui cessão para terceiros, revenda ou licenciamento para outras marcas.</p>
+                </div>
+
+            </div>
+
+            <!-- Ambientação do espaço — nota do plano Imersão -->
+            <div class="info-strip rounded-2xl px-8 py-6 mt-8 max-w-2xl mx-auto">
+                <p class="text-dim-30 text-xs uppercase tracking-widest mb-3 text-center">Somente no plano Imersão</p>
+                <h5 class="serif text-lg font-light text-white mb-3 text-center">Ambientação do espaço</h5>
+                <p class="text-dim-40 text-xs font-light mb-3 text-center leading-relaxed">
+                    Organização estética básica do cenário, composição visual com elementos já existentes no local e ajuste de enquadramentos para melhor resultado visual.
+                </p>
+                <p class="text-dim-25 text-xs font-light italic text-center">
+                    Não inclui locação de mobiliário, cenografia externa, flores, objetos comprados ou produção de cenário completa.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
 
 
 
