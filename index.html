@@ -40,6 +40,21 @@
             z-index: -1;
         }
 
+        /* ─── iOS Safari: backdrop-filter não funciona com position:fixed atrás.
+           Solução: wrapper fixo que cria stacking context, vídeo dentro ─── */
+        #bg-wrapper {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        #bg-wrapper #bg-video {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+
         /* ─── Navbar ─── */
         /* backdrop-filter removido do transition — não é animável de forma confiável */
         nav {
@@ -212,56 +227,11 @@
             -webkit-backdrop-filter: blur(20px);
         }
 
-        /* ─── Mobile fixes ─── */
+        /* ─── Mobile ─── */
         @media (max-width: 767px) {
-            /* Overlay leve — igual ao desktop, fundo visível */
-            .packages-overlay {
-                background: rgba(10, 9, 7, 0.50) !important;
-            }
-
-            /* Cards: toque suave de escurecimento sem perder o fundo */
-            .glass-card {
-                background: rgba(10, 8, 5, 0.38);
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
-                border-color: rgba(255,255,255,0.14);
-            }
-            .glass-card:hover { transform: none; }
-
-            .glass-card-featured {
-                background: rgba(14, 11, 7, 0.44);
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
-            }
+            /* Sem hover lift no touch */
+            .glass-card:hover,
             .glass-card-featured:hover { transform: none; }
-
-            /* Info glass */
-            .info-glass {
-                background: rgba(10, 8, 5, 0.35);
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
-            }
-
-            /* Info strip */
-            .info-strip {
-                background: rgba(10, 8, 5, 0.30);
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
-            }
-
-            /* Navbar */
-            nav.scrolled {
-                background: rgba(10, 9, 7, 0.72);
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
-            }
-
-            /* Glass pill */
-            .glass-pill {
-                background: rgba(255,255,255,0.09);
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
-            }
         }
 
         /* ─── Scroll caret ─── */
@@ -298,10 +268,13 @@
 </head>
 <body>
 
-    <!-- Vídeo fixo como fundo de toda a página -->
-    <video id="bg-video" autoplay muted loop playsinline preload="metadata" poster="1.jpg">
-        <source src="bg.mp4" type="video/mp4">
-    </video>
+    <!-- Vídeo fixo como fundo de toda a página — wrapper cria stacking context
+         necessário para backdrop-filter funcionar no iOS Safari -->
+    <div id="bg-wrapper">
+        <video id="bg-video" autoplay muted loop playsinline preload="metadata" poster="1.jpg">
+            <source src="bg.mp4" type="video/mp4">
+        </video>
+    </div>
 
 
     <!-- ─── NAVBAR ─── -->
@@ -706,11 +679,11 @@
         // Autoplay fallback: se o browser bloquear, mostra o poster (1.jpg)
         const video = document.getElementById('bg-video');
         video.play().catch(() => {
+            const wrapper = document.getElementById('bg-wrapper');
+            wrapper.style.backgroundImage = "url('1.jpg')";
+            wrapper.style.backgroundSize = 'cover';
+            wrapper.style.backgroundPosition = 'center';
             video.style.display = 'none';
-            document.body.style.backgroundImage = "url('1.jpg')";
-            document.body.style.backgroundSize = 'cover';
-            document.body.style.backgroundPosition = 'center';
-            document.body.style.backgroundAttachment = 'fixed';
         });
     </script>
 </body>
